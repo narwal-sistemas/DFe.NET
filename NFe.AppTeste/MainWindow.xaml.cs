@@ -1089,7 +1089,7 @@ namespace NFe.AppTeste
             {
                 det.imposto.IPI = new IPI()
                 {
-                    cEnq = 999,
+                    cEnq = "999",
 
                     //Se você já tem os dados de toda a tributação persistida no banco em uma única tabela, utilize a linha comentada abaixo para preencher as tags do IPI
                     //TipoIPI = ObterIPIBasico(),
