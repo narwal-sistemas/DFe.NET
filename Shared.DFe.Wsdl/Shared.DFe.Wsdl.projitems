@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="SharedProjectFile_SccProperties">
+    <SharedProjectFile_ProjectGuid>{6e9fb66f-8b78-454c-a794-0f0ccff8fc04}</SharedProjectFile_ProjectGuid>
+    <SharedProjectFile_SccProjectName>SAK</SharedProjectFile_SccProjectName>
+    <SharedProjectFile_SccAuxPath>SAK</SharedProjectFile_SccAuxPath>
+    <SharedProjectFile_SccLocalPath>SAK</SharedProjectFile_SccLocalPath>
+    <SharedProjectFile_SccProvider>SAK</SharedProjectFile_SccProvider>
+  </PropertyGroup>
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
@@ -12,15 +19,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Cabecalho\ITagCabecalho.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cabecalho\NfeTagCabecalho.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Cabecalho\TagCabecalhoVazia.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\CommonResponseBody.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\CommonResponseHead.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\CommonSOAPEnvelope.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\cteCabecMsg.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\RequestBuilderAndSender.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\SoapUrls.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\SoapUtils.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\TipoEvento.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Common\WsdlConfiguracao.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Corpo\ExtTagCorpoParametroEntrada.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Corpo\ITagCorpo.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Corpo\NfeTagCorpo.cs" />

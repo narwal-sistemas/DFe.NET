@@ -45,7 +45,7 @@ namespace DFe.Utils
     {
 
         // https://github.com/ZeusAutomacao/DFe.NET/issues/610
-        private static readonly Hashtable CacheSerializers = new Hashtable();
+        //private static readonly Hashtable CacheSerializers = new Hashtable();
 
         /// <summary>
         ///     Serializa a classe passada para uma string no form
@@ -56,8 +56,9 @@ namespace DFe.Utils
         public static string ClasseParaXmlString<T>(T objeto)
         {
             XElement xml;
-            var keyNomeClasseEmUso = typeof(T).FullName;
-            var ser = BuscarNoCache(keyNomeClasseEmUso, typeof(T));
+            var ser = XmlSerializer.FromTypes(new[] { typeof(T) })[0]; // Serializador alternativo -  sem acesso/busca no cache
+            //var keyNomeClasseEmUso = typeof(T).FullName;
+            //var ser = BuscarNoCache(keyNomeClasseEmUso, typeof(T));
 
             using (var memory = new MemoryStream())
             {
@@ -80,8 +81,9 @@ namespace DFe.Utils
         /// <returns></returns>
         public static T XmlStringParaClasse<T>(string input) where T : class
         {
-            var keyNomeClasseEmUso = typeof(T).FullName;
-            var ser = BuscarNoCache(keyNomeClasseEmUso, typeof(T));
+            var ser = XmlSerializer.FromTypes(new[] { typeof(T) })[0];
+            //var keyNomeClasseEmUso = typeof(T).FullName;
+            //var ser = BuscarNoCache(keyNomeClasseEmUso, typeof(T));
 
             using (var sr = new StringReader(input))
                 return (T) ser.Deserialize(sr);
@@ -100,9 +102,9 @@ namespace DFe.Utils
             {
                 throw new FileNotFoundException("Arquivo " + arquivo + " não encontrado!");
             }
-
-            var keyNomeClasseEmUso = typeof(T).FullName;
-            var serializador = BuscarNoCache(keyNomeClasseEmUso, typeof(T));
+            var serializador = XmlSerializer.FromTypes(new[] { typeof(T) })[0];
+            //var keyNomeClasseEmUso = typeof(T).FullName;
+            //var serializador = BuscarNoCache(keyNomeClasseEmUso, typeof(T));
             var stream = new FileStream(arquivo, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             try
             {
@@ -222,18 +224,18 @@ namespace DFe.Utils
         }
 
         // https://github.com/ZeusAutomacao/DFe.NET/issues/610
-        private static XmlSerializer BuscarNoCache(string chave, Type type)
-        {
-            if (CacheSerializers.Contains(chave))
-            {
-                return (XmlSerializer)CacheSerializers[chave];
-            }
+        //private static XmlSerializer BuscarNoCache(string chave, Type type)
+        //{
+        //    if (CacheSerializers.Contains(chave))
+        //    {
+        //        return (XmlSerializer)CacheSerializers[chave];
+        //    }
 
 
-            var ser = XmlSerializer.FromTypes(new[] { type })[0];
-            CacheSerializers.Add(chave, ser);
+        //    var ser = XmlSerializer.FromTypes(new[] { type })[0];
+        //    CacheSerializers.Add(chave, ser);
 
-            return ser;
-        }
+        //    return ser;
+        //}
     }
 }

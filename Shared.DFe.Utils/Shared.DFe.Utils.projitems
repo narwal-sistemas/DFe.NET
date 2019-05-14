@@ -1,5 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="SharedProjectFile_SccProperties">
+    <SharedProjectFile_ProjectGuid>{30339c57-4e6b-4e6b-8cda-204adfcd8845}</SharedProjectFile_ProjectGuid>
+    <SharedProjectFile_SccProjectName>SAK</SharedProjectFile_SccProjectName>
+    <SharedProjectFile_SccAuxPath>SAK</SharedProjectFile_SccAuxPath>
+    <SharedProjectFile_SccLocalPath>SAK</SharedProjectFile_SccLocalPath>
+    <SharedProjectFile_SccProvider>SAK</SharedProjectFile_SccProvider>
+  </PropertyGroup>
   <PropertyGroup>
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
@@ -19,6 +26,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)FuncoesXml.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Reflexao.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StringExtencoes.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Utils\Compressao.cs" />
   </ItemGroup>
 </Project>

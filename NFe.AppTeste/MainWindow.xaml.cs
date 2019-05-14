@@ -104,7 +104,7 @@ namespace NFe.AppTeste
         {
             try
             {
-                var cert = CertificadoDigitalUtils.ListareObterDoRepositorio();
+                var cert = CertificadoDigital.ListareObterDoRepositorio();
                 _configuracoes.CfgServico.Certificado.Serial = cert.SerialNumber;
                 //TxtValidade.Text = "Validade: " + cert.GetExpirationDateString();
             }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Xml;
 using DFe.DocumentosEletronicos.Wsdl;
-using DFe.Utils;
 using DFe.Wsdl;
 using NFe.Utils;
 
