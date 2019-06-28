@@ -32,7 +32,6 @@
 /********************************************************************************/
 
 using System;
-using System.Collections;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -56,12 +55,10 @@ namespace DFe.Utils
         public static string ClasseParaXmlString<T>(T objeto)
         {
             XElement xml;
-            var ser = XmlSerializer.FromTypes(new[] { typeof(T) })[0]; // Serializador alternativo -  sem acesso/busca no cache
-            //var keyNomeClasseEmUso = typeof(T).FullName;
-            //var ser = BuscarNoCache(keyNomeClasseEmUso, typeof(T));
-
+           
             using (var memory = new MemoryStream())
             {
+                var ser = new XmlSerializer((typeof(T)));
                 using (TextReader tr = new StreamReader(memory, Encoding.UTF8))
                 {
                     ser.Serialize(memory, objeto);
@@ -70,6 +67,7 @@ namespace DFe.Utils
                     xml.Attributes().Where(x => x.Name.LocalName.Equals("xsd") || x.Name.LocalName.Equals("xsi")).Remove();
                 }
             }
+            GC.Collect();
             return XElement.Parse(xml.ToString()).ToString(SaveOptions.DisableFormatting);
         }
 
@@ -81,12 +79,8 @@ namespace DFe.Utils
         /// <returns></returns>
         public static T XmlStringParaClasse<T>(string input) where T : class
         {
-            var ser = XmlSerializer.FromTypes(new[] { typeof(T) })[0];
-            //var keyNomeClasseEmUso = typeof(T).FullName;
-            //var ser = BuscarNoCache(keyNomeClasseEmUso, typeof(T));
-
-            using (var sr = new StringReader(input))
-                return (T) ser.Deserialize(sr);
+            var ser = new XmlSerializer((typeof(T))); 
+            using (var sr = new StringReader(input))return (T)ser.Deserialize(sr);
         }
 
         /// <summary>
@@ -108,7 +102,7 @@ namespace DFe.Utils
             var stream = new FileStream(arquivo, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             try
             {
-                return (T) serializador.Deserialize(stream);
+                return (T)serializador.Deserialize(stream);
             }
             finally
             {
@@ -195,8 +189,8 @@ namespace DFe.Utils
         {
             var xmlDoc = XDocument.Load(arquivoXml);
             var xmlString = (from d in xmlDoc.Descendants()
-                where d.Name.LocalName == nomeDoNode
-                select d).FirstOrDefault();
+                             where d.Name.LocalName == nomeDoNode
+                             select d).FirstOrDefault();
 
             if (xmlString == null)
                 throw new Exception(String.Format("Nenhum objeto {0} encontrado no arquivo {1}!", nomeDoNode, arquivoXml));
@@ -215,8 +209,8 @@ namespace DFe.Utils
             var s = stringXml;
             var xmlDoc = XDocument.Parse(s);
             var xmlString = (from d in xmlDoc.Descendants()
-                where d.Name.LocalName == nomeDoNode
-                select d).FirstOrDefault();
+                             where d.Name.LocalName == nomeDoNode
+                             select d).FirstOrDefault();
 
             if (xmlString == null)
                 throw new Exception(String.Format("Nenhum objeto {0} encontrado no xml!", nomeDoNode));
